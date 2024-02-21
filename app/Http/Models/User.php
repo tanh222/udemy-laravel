@@ -42,4 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function post (){
+        return $this->hasOne('App\Http\Models\Post','user_id');
+    }
+    public function posts (){
+        return $this ->hasMany('App\Http\Models\Post');
+    }
+    public function roles (){
+        return $this->belongsToMany('App\Http\Models\Role');
+//        return $this->belongsToMany('App\Http\Models\Role')-> withPivot('created_at');
+//        return $this->belongsToMany('App\Http\Models\Role','user_roles','user_id','role_id');
+    }
 }
